@@ -12,6 +12,8 @@ RUN mvn dependency:go-offline
 COPY . /source
 
 # Build the application and execute unit tests without downloading dependencies again
+# Currently --offline switch to mvn command does not work. The message is
+#  "in offline mode and the artifact ... has not been downloaded from it before."
 RUN mvn clean package -Dmaven.test.failure.ignore=true
 
 # NEW Stage for handling test reports
