@@ -3,11 +3,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class FailingTest {
+public class ExampleTest {
 
     @Test
-    void failTest() {
+    void failingTest() {
         fail("failTest failed");
+    }
+
+    @Test
+    void anotherFailingTest() {
+        fail("anotherFailingTest failed");
     }
 
     @Test

@@ -1,5 +1,5 @@
 # Stage for building the application
-FROM maven:3.9.3-eclipse-temurin-17-alpine AS builder
+FROM maven:3.9.9-eclipse-temurin-23-alpine AS builder
 
 # Copy the Maven configuration files first to download dependencies separately
 COPY pom.xml /source/
@@ -18,8 +18,3 @@ RUN mvn clean package -Dmaven.test.failure.ignore=true
 FROM scratch AS reporter
 COPY --from=builder /source/target/surefire-reports /reports
 
-# Stage for running the application
-FROM openjdk:17-jdk-slim AS runtime
-WORKDIR /app
-COPY --from=builder /source/target/my-application.jar .
-CMD ["java", "-jar", "my-application.jar"]
